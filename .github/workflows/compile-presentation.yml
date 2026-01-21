@@ -141,7 +141,7 @@ jobs:
           set -ev
           ls -lR
           mv artifact-html website
-          mv artifact-presentation-pdf/index.pdf website/presentation/presentation.pdf
+          mv artifact-presentation-pdf/index.pdf website/presentation.pdf
     # Prepare the GitHub Pages action
     - name: prepare GitHub Pages action
       uses: actions/upload-pages-artifact@v3.0.1    
