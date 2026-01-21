@@ -1,0 +1,201 @@
+---
+title: Reproducibility - Preserving Survey Data
+author:
+  - Laurel Krovetz
+  - Lars Vilhuber
+date: January 2026
+---
+
+```{r config,include=FALSE}
+library(readr)
+library(here)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(qualtRics)
+library(lubridate)
+library(qrcode)
+
+# Qualtrics secrets are read from the environment:
+# - QUALTRICS_API_KEY
+# - QUALTRICS_BASE_URL
+
+# We also need DATAVERSE secrets
+#      DATAVERSE_TOKEN: ${{secrets.DATAVERSE_TOKEN}}
+#      DATAVERSE_SERVER: https://demo.dataverse.org
+#      DATAVERSE_DATASET_DOI: do
+# Let's check that they are there:
+
+message(Sys.getenv("QUALTRICS_BASE_URL"))
+
+# The repository name
+
+message(Sys.getenv("GITHUB_REPOSITORY"))
+
+# Process the repository name to generate the URL
+# - split the two components
+# - combine them into a URL with 'github.io' in the middle
+
+GITHUB_REPOSITORY <- Sys.getenv("GITHUB_REPOSITORY")
+GITHUB_REPOSITORY_PARTS <- strsplit(GITHUB_REPOSITORY, "/")[[1]]
+REPOSITORY_URL <- paste0("https://github.com/", GITHUB_REPOSITORY)
+WEBSITE_URL <- paste0("https://", GITHUB_REPOSITORY_PARTS[1], ".github.io/", GITHUB_REPOSITORY_PARTS[2])
+
+# qualtRics data:
+# you can find this with all_surveys() %>% arrange(creationDate) %>% head()
+
+QUALTRICS_FULL_URL <- "https://cornell.yul1.qualtrics.com/jfe/form"
+
+# Public Qualtrics URL
+
+QUALTRICS_SURVEY <- "SV_8Bbgqex21KyYDFY"
+
+QUALTRICS_URL <- file.path(QUALTRICS_FULL_URL, QUALTRICS_SURVEY)
+
+# Time when this was posted (discard anything before that)
+
+QUALTRICS_STIME <- ymd_hms("2025-10-01 00:00:01")
+QUALTRICS_ETIME <- ymd_hms("2026-01-14 23:59:00")
+
+
+if (!dir.exists(here::here("data"))) {
+  dir.create(here::here("data"))
+}
+```
+
+::: {.panel-tabset}
+
+## Introduction
+
+Here we will demonstrate how to preserve raw survey data and also how to handle confidential data. We will do so with data from a  survey that you all will provide responses to. Some of the questions are meant to elicit "confidential" information from you as responses. You should not give your actual confidential information in response to these questions. We will use these questions as way to teach how to preserve data when some data are confidential. 
+
+
+## Survey 
+
+Please fill out this  survey:
+
+<`r file.path(QUALTRICS_FULL_URL,QUALTRICS_SURVEY)`>
+
+
+
+```{r, child=c(here::here('presentation','00-qrcode.md'))}
+```
+
+## Results
+
+These are the results from all responses ever submitted. This might differ from the  [presentation](`r WEBSITE_URL`/presentation/)!
+
+```{r downloaddata,include=FALSE}
+# download data to local location
+
+# if the Qualtrics API key is not set, we can't fetch the data
+if (Sys.getenv("QUALTRICS_API_KEY") != "") {
+  data.raw <- fetch_survey(surveyID = QUALTRICS_SURVEY, verbose = TRUE) 
+  data <- data.raw |>
+          filter(consent == "Yes") |>
+          filter(Status != "Survey Preview") |>
+          filter(StartDate > QUALTRICS_STIME & EndDate < QUALTRICS_ETIME) |>
+    # renaming variables
+    select(StartDate,EndDate,Status,Finished,RecordedDate,ResponseId,consent,age_1,gender,education,num_tabs_1,name_confidential,number_confidential)
+} else {
+  data <- data.frame()
+}
+
+```
+
+```{r gender_table, results='asis', include=TRUE,echo=FALSE,message=FALSE}
+
+if ( nrow(data) >0 ) {
+data |>
+  select(gender) |>
+  group_by(gender) |>
+  summarise(Frequency=n()) |>
+  ungroup() |>
+  mutate(Percent = round(Frequency/nrow(data)*100,2)) -> data.table
+
+data.table |> kable()
+} else {
+  cat("No data yet. Check back later.")
+}
+```
+
+```{r education_table, results='asis', include=TRUE,echo=FALSE,message=FALSE}
+if ( nrow(data) >0 ) {
+data |>
+  select(education) |>
+  group_by(education) |>
+  summarise(Frequency=n()) |>
+  ungroup() |>
+  mutate(Percent = round(Frequency/nrow(data)*100,2)) -> data.table
+
+data.table |> kable()
+} else {
+  cat("No data yet. Check back later.")
+}
+```
+
+```{r age_table, results='asis', echo=FALSE, message=FALSE}
+if (nrow(data) > 0) {
+  cat("### Age")
+  var_data <- data$age_1
+  summary_stats <- data.frame(
+    Statistic = c("Count", "Mean", "Median", "Min", "Max", "Std. Dev."),
+    Value = c(
+      sum(!is.na(var_data)),
+      mean(var_data, na.rm = TRUE),
+      median(var_data, na.rm = TRUE),
+      min(var_data, na.rm = TRUE),
+      max(var_data, na.rm = TRUE),
+      sd(var_data, na.rm = TRUE)
+    )
+  )
+  print(knitr::kable(summary_stats, digits = 2))
+} else {
+  cat("No data yet. Check back later.")
+}
+```
+
+```{r tabs_table, results='asis', echo=FALSE, message=FALSE}
+if (nrow(data) > 0) {
+  cat("### Number of tabs open")
+  var_data <- data$num_tabs_1
+  summary_stats <- data.frame(
+    Statistic = c("Count", "Mean", "Median", "Min", "Max", "Std. Dev."),
+    Value = c(
+      sum(!is.na(var_data)),
+      mean(var_data, na.rm = TRUE),
+      median(var_data, na.rm = TRUE),
+      min(var_data, na.rm = TRUE),
+      max(var_data, na.rm = TRUE),
+      sd(var_data, na.rm = TRUE)
+    )
+  )
+  print(knitr::kable(summary_stats, digits = 2))
+} else {
+  cat("No data yet. Check back later.")
+}
+```
+
+## Why
+
+For more information and steps on how to start creating a survey in Qualtrics, how to process and clean the data to remove confidential data, see this [presentation](`r WEBSITE_URL`/presentation/).
+
+
+
+```{r, child=c(here::here('99-links.md'))}
+```
+
+## Log
+
+
+```{r preserve data, include=TRUE,echo=TRUE,message=TRUE}
+# Now save the data to a local file
+if (nrow(data) > 0) {
+  write_csv(data, here::here("data", "tutorial-survey.csv"))
+  saveRDS(data, here::here("data", "tutorial-survey.rds"))
+} else {
+  # message("No data to save.")
+}
+```
+
+:::
