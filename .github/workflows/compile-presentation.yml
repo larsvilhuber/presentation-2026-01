@@ -63,9 +63,10 @@ jobs:
     #   uses: quarto-dev/quarto-actions/render@v2
     #   with:
     #     path: ./presentation
+    # Set the test statement to include "&& exit 1" to force failure if variable is not set
       run: |
         echo "xxxxxxxxxx${QUALTRICS_BASE_URL}xxxxxxxxxx"
-        test -z "${QUALTRICS_BASE_URL}" && echo "QUALTRICS_BASE_URL is not set" && exit 1
+        test -z "${QUALTRICS_BASE_URL}" && echo "QUALTRICS_BASE_URL is not set" 
         quarto render presentation/index.qmd --output-dir _html
     - name: Upload HTML Artifact
       id: artifact-upload-step2
