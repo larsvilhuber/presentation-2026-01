@@ -1,52 +1,26 @@
-# Opening up technical possibilities
+# What can **YOU** do?
 
-## How can we know that a data source is reliably obtained?
+## What is this?
 
-## Consider the case of Gino
+![](images/anya-mouse.png)
 
-![Francesca Gino](images/gino-nyt.png)
+## Training
 
-## The case of Gino
+- Biology students learn key lab techniques
+  - Pipetting
+  - Capture-recapture of wild animals
 
-- Francesca Gino was a tenured professor at Harvard Business School, writing on honesty (!)
+## **YOU**!
 
-## The case of Gino
+![](images/Gemini_Generated_Image_wdh8jvwdh8jvwdh8.png)
 
-- Several articles were investigated by third parties (Data Colada, in particular [^colada1]), and found to be problematic
+# (BTW...)
 
-::::{.columns}  
+When I prompted Gemini to correct the spelling in "Reproducibility", it only made it worse!
 
-::: {.column width="10%"}
-:::
+![](images/gemini-is-bananas.png)
 
-::: {.column width="80%"}
-![Data manipulated](images/gino-data-colada-118.png)
-
-:::
-::: {.column width="10%"}
-:::
-::::
-
-[^colada1]: <https://datacolada.org/109>, <https://datacolada.org/110>, <https://datacolada.org/111>, <https://datacolada.org/112>, <https://datacolada.org/114>, <https://datacolada.org/118>
-
-## The case of Gino
-
-- At least one of them had manipulated data **AFTER** it had been collected, **BEFORE** it had been analyzed.
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-![Data manipulation](images/gino-Page-517-Annotated-Screenshot-Cropped.png)
-
-:::
-
-::: {.column width="50%"}
-
-![Results of manipulation](images/gino-data-colada-118-1.png)
-
-:::
-::::
+# Back to the topic
 
 ## Generic survey processing
 
@@ -77,7 +51,7 @@
 - **Provision** (publication of materials) provides transparency
 - **Verification** (running the analysis again - computational reproducibility) compensates for *mistrust*/*absence of trust*
 
-## Which journals again {.smaller}
+## Which journals  {.smaller}
 
 - [American Economic Association](https://www.aeaweb.org/journals/) (8)
 - [Econometric Society](https://www.econometricsociety.org/) (3)
@@ -136,8 +110,9 @@
 ## Taking it a step further
 
 - Has been discussed by authors behind Data Colada
-- Survey tool provider (Qualtrics, etc.) exports data, posts checksum
+- Survey tool provider (Qualtrics, etc.) exports data, posts **checksum**
 - Survey tool provider exports data only to institution directly into trusted repository, researchers obtain data from there (with privacy protections)
+- Researcher can verify **checksum**
 
 ## Does not prevent all fraud
 
@@ -175,3 +150,25 @@
 
 - Working with [cascad](https://www.cascad.tech/), several [INEXDA](https://inexda.org) members, and others
 - Relying on external certification of data inputs (data catalogs with metadata, checksums)
+
+## Churchill said...
+
+::::{.columns}
+::: {.column width="50%"}
+![](images/Winston-Churchill-Yousuf-Karsh-1941.jpg)
+:::
+::: {.column width="50%"}
+"**Do not trust any statistics you did not fake yourself.**"
+:::
+::::
+
+## Or did he...
+
+::::{.columns}
+::: {.column width="50%"}
+![](images/Winston-Churchill-Yousuf-Karsh-1941-really.png)
+:::
+::: {.column width="50%"}
+"No, of course, the British Prime Minister and Nobel Laureate for Literature never claimed such nonsense. But putting his name in front of a quote gives it a more solemn, more imposing, more definitive appearance." [[Source](https://winstonchurchill.hillsdale.edu/fake-churchill-quote/)]
+:::
+::::

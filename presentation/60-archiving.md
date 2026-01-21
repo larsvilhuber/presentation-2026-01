@@ -118,13 +118,6 @@ Publication typically involves making information about the data, as well as the
 
 
 
-## Let's start
-
-<div style="text-align: center;">
-<img src="images/giphy_scan.gif" width="50%" alt="scan" />
-</div>
-
-
 ## Options for Preservation (1)
 
 
@@ -174,80 +167,3 @@ Journals and institutions have assessed a number of trusted repositories:
 ::::
 
 :::
-
-## Options for Preservation
-
-::: {.columns}
-
-:::: {.column width="50%"}
-
-Here: Demo Dataverse for Lars <https://demo.dataverse.org/dataverse/larstest>
-
-![](images/demo-dataverse-lars.png)
-
-::::
-
-:::: {.column width="50%"}
-In one of my day jobs:
-
-<img alt="openicpsr" src="images/openicpsr-main-page.png" width="100%">
-
-::::
-
-:::
-
-## Getting started on Dataverse
-
-We will NOT use the regular Dataverse; rather, we will test on the demo site. 
-
-- This also works with Zenodo: **<https://sandbox.zenodo.org/>**
-- Check your URL bar! There's often no other indication that this is not the real Zenodo or Dataverse!
-
-
-
-## A tutorial of sorts
-
-- Demo Dataverse for Lars <https://demo.dataverse.org/dataverse/larstest>
-
-## Remember the API tokens?
-
-
-```plaintext
-QUALTRICS_API_KEY='something here'
-QUALTRICS_BASE_URL='url goes here'
-DATAVERSE_TOKEN='token goes here'
-DATAVERSE_SERVER='https://demo.dataverse.org'
-DATAVERSE_DATASET_DOI='doi goes here'
-```
-
-We're going to need the last three here!
-
-## Uploading data to Dataverse
-
-- From terminal: 
-
-```{.bash}
-python3 -m venv venv-dv
-source venv-dv/bin/activate
-source .Renviron
-git clone https://github.com/larsvilhuber/dataverse-uploader
-pip install -r dataverse-uploader/requirements.txt
-python3 dataverse-uploader/dataverse.py \
-   $DATAVERSE_TOKEN $DATAVERSE_SERVER \ 
-   $DATAVERSE_DATASET_DOI . -d data
-```
-
-## Automatically from Github Actions
-
-
-- [Code for uploading automatically](https://github.com/labordynamicsinstitute/tutorial-preserving-survey/blob/main/.github/workflows/compile-presentation.yml#L175)
-
-## Voilà!
-
-We have a workflow that can automatically download from Qualtrics, and in the same move, upload to Dataverse!
-
-Possible improvements:
-
-- [immediately publish (no human intervention)](https://github.com/labordynamicsinstitute/tutorial-preserving-survey/blob/main/.github/workflows/compile-presentation.yml#L193)
-- upload the download logs and checksums together with the data
-- [run on a schedule](https://github.com/labordynamicsinstitute/tutorial-preserving-survey/blob/main/.github/workflows/compile-presentation.yml#L8)

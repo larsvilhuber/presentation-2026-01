@@ -1,9 +1,8 @@
 ---
-title: "Preserving Survey Data"
+title: "Reproducibility - Why?"
 author: 
   - "Lars Vilhuber"
-  - "Laurel Krovetz"
-date: January 14 2026
+date: January 21 2026
 format: 
   revealjs:
     scrollable: true
@@ -68,80 +67,16 @@ QUALTRICS_ETIME <- ymd_hms("2026-02-14 23:59:00")
 
 ```
 
-```{r, child=c(here::here("presentation",'00-introduction1.md'))}
+
+```{r, child=c(here::here("presentation",'03-sp500.md'))}
 ```
 
-```{r, child=c(here::here("presentation",'00-introduction2.md'))}
+```{r, child=c(here::here("presentation",'05-fraud.md'))}
 ```
 
-```{r, child=c(here::here("presentation",'00-survey-qrcode.md'))}
+
+```{r, child=c(here::here("presentation",'10-what-can-you-do.md'))}
 ```
 
-```{r, child=c(here::here("presentation",'01-goals.md'))}
-```
-
-```{r, child=c(here::here("presentation",'02-notes-on-goals.md'))}
-```
-
-```{r, child=c(here::here("presentation",'03-preservation.md'))}
-```
-
-```{r, child=c(here::here("presentation",'05-example-survey.md'))}
-```
-
-# Creating a survey in Qualtrics
-
-```{r, child=c(here::here("presentation",'10-creating-survey.md'))}
-```
-
-```{r, child=c(here::here("presentation",'11-qualtrics-data.md'))}
-```
-
-```{r, child=c(here::here("presentation",'12-qualtrics-survey-specs.md'))}
-```
-
-```{r, child=c(here::here("presentation",'16-process-workflow.md'))}
-```
-
-# Processing data in R
-
-```{r, child=c(here::here("presentation",'20-processing-R.md'))}
-```
-
-```{r, child=c(here::here("presentation",'21-API-key.md'))}
-```
-
-```{r, child=c(here::here("presentation",'22-loading-data-R.md'))}
-```
-
-```{r, child=c(here::here("presentation",'23-cleaning-R.md'))}
-```
-
-```{r, child=c(here::here("presentation",'24-processing-R.md'))}
-```
-
-```{r, child=c(here::here("presentation",'30-present-data.md'))}
-```
-
-# Survey results
-
-```{r, child=c(here::here("presentation",'40-survey-results.md'))}
-```
-
-# Keeping your secrets secret
-
-```{r, child=c(here::here("presentation",'50-secrets.md'))}
-```
-
-```{r, child=c(here::here("presentation",'51-API-key-secret.md'))}
-```
-
-```{r, child=c(here::here("presentation",'52-API-key-workflow.md'))}
-```
-
-# Archiving
-
-```{r, child=c(here::here("presentation",'60-archiving.md'))}
-```
 
 # The end! Thanks for your attention.

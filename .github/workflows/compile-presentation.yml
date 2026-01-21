@@ -51,10 +51,10 @@ jobs:
       uses: r-lib/actions/setup-renv@v2
       with:
         cache-version: 1
-    - name: Set Environment Variables
-      run: |
-        echo "QUALTRICS_BASE_URL=${{ secrets.QUALTRICS_BASE_URL }}" >> $GITHUB_ENV
-        echo "QUALTRICS_API_KEY=${{ secrets.QUALTRICS_API_KEY }}" >> $GITHUB_ENV
+    # - name: Set Environment Variables
+    #   run: |
+    #     echo "QUALTRICS_BASE_URL=${{ secrets.QUALTRICS_BASE_URL }}" >> $GITHUB_ENV
+    #     echo "QUALTRICS_API_KEY=${{ secrets.QUALTRICS_API_KEY }}" >> $GITHUB_ENV
 
           
     - name: Render Landing Page
@@ -66,14 +66,13 @@ jobs:
       run: |
         echo "xxxxxxxxxx${QUALTRICS_BASE_URL}xxxxxxxxxx"
         test -z "${QUALTRICS_BASE_URL}" && echo "QUALTRICS_BASE_URL is not set" && exit 1
-        quarto render  index.qmd --output-dir _html
         quarto render presentation/index.qmd --output-dir _html
     - name: Upload HTML Artifact
       id: artifact-upload-step2
       uses: actions/upload-artifact@v4
       with:
           name: artifact-html
-          path: _html
+          path: _html/presentation
           retention-days: 1
     - name: Upload data artifact
       id: artifact-upload-data
@@ -107,7 +106,7 @@ jobs:
       uses: addnab/docker-run-action@v3
       with:
         image: astefanutti/decktape
-        options: -v ${{ github.workspace }}/_html/presentation:/slides 
+        options: -v ${{ github.workspace }}/_html:/slides 
         run: |
           node /decktape/decktape.js --chrome-path /usr/bin/chromium-browser --chrome-arg=--no-sandbox --chrome-arg=--disable-gpu index.html index.pdf
 
@@ -115,7 +114,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: artifact-presentation-pdf
-        path: _html/presentation/index.pdf
+        path: _html/index.pdf
   deploy-all:
     runs-on: ubuntu-22.04
     needs: 
@@ -130,11 +129,6 @@ jobs:
       with:
             path: .
             pattern: artifact-html
-    - name: Download Pres Artifacts
-      uses: actions/download-artifact@v4
-      with:
-            path: .
-            pattern: artifact-presentation
     - name: Download Pres PDF
       uses: actions/download-artifact@v4
       with:
