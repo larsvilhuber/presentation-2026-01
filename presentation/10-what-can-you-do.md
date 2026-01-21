@@ -6,9 +6,34 @@
 
 ## Training
 
+::::{.columns}
+:::{.column width="50%"}
+
 - Biology students learn key lab techniques
   - Pipetting
   - Capture-recapture of wild animals
+
+:::
+:::{.column width="50%"}
+:::
+::::
+
+
+
+## Training
+
+::::{.columns}
+:::{.column width="50%"}
+
+- Biology students learn key lab techniques
+  - Pipetting
+  - Capture-recapture of wild animals
+
+:::
+:::{.column width="50%"}
+![That's my daughter's hands in there](images/anya-mouse.png)
+:::
+::::
 
 ## **YOU**!
 
@@ -101,6 +126,26 @@ When I prompted Gemini to correct the spelling in "Reproducibility", it only mad
 :::
 ::::
 
+
+## Verification by you
+
+
+::::{.columns}
+:::{.column width="50%"}
+
+![](images/Gemini_Generated_Image_wdh8jvwdh8jvwdh8.png)
+
+:::
+:::{.column width="50%"}
+
+- Toner-Rodgers was caught b/c others scrutinized his work
+  - Investigated the statistics (not too fishy)
+  - Investigated the sources (huh?)
+  - Investigated the coherence of the paper (much harder)
+
+:::
+::::
+
 ## Taking it a step further
 
 ::: {.white-col}
@@ -114,9 +159,34 @@ When I prompted Gemini to correct the spelling in "Reproducibility", it only mad
 - Survey tool provider exports data only to institution directly into trusted repository, researchers obtain data from there (with privacy protections)
 - Researcher can verify **checksum**
 
+## Does not work yet
+
+
+## What if you could verify the file?
+
+
+
+::::{.columns}
+:::{.column width="50%"}
+
+```{r checksum, include=TRUE,echo=TRUE}
+# compute checksum of the file
+tools::md5sum(here::here("presentation","SP500.csv"))
+```
+
+:::
+:::{.column width="50%"}
+
+![Not yet available!](images/sp500-fred_md5.png)
+
+:::
+::::
+
 ## Does not prevent all fraud
 
 ::::{.columns}
+:::{.column width="25%"}
+:::
 :::{.column width="50%"}
 
 [Toronto researcher loses Ph.D.](https://retractionwatch.com/2024/04/26/psychology-researcher-loses-phd-after-allegedly-using-husband-in-study-and-making-up-data/)
@@ -124,11 +194,7 @@ When I prompted Gemini to correct the spelling in "Reproducibility", it only mad
 ![Toronto case](images/toronto-psychology-loses-phd.png)
 
 :::
-:::{.column width="50%"}
-
-[MIT student makes up firm data](https://economics.mit.edu/news/assuring-accurate-research-record)
-
-![MIT case](images/mit-ai-paper.png)
+:::{.column width="25%"}
 
 :::
 ::::
@@ -138,6 +204,13 @@ When I prompted Gemini to correct the spelling in "Reproducibility", it only mad
 ::: {.white-col}
 ![Survey flow](images/xkcd_data_provenance-7.png)
 :::
+
+## How to document the full process?
+
+- Identify all sources - very precisely!
+- Document all processing steps - using tools you are learning here!
+- Transparent about your process - show your code!
+- Expect critique (if not criticism) - embrace it!
 
 ## A sketch: Transparency Certified
 
@@ -169,6 +242,6 @@ When I prompted Gemini to correct the spelling in "Reproducibility", it only mad
 ![](images/Winston-Churchill-Yousuf-Karsh-1941-really.png)
 :::
 ::: {.column width="50%"}
-"No, of course, the British Prime Minister and Nobel Laureate for Literature never claimed such nonsense. But putting his name in front of a quote gives it a more solemn, more imposing, more definitive appearance." [[Source](https://winstonchurchill.hillsdale.edu/fake-churchill-quote/)]
+"No, of course, the British Prime Minister ... **never claimed such nonsense**. But putting his name in front of a quote gives it a more solemn, more imposing, more definitive appearance." [[Source](https://winstonchurchill.hillsdale.edu/fake-churchill-quote/)]
 :::
 ::::
