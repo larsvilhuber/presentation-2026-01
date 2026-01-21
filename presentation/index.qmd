@@ -1,15 +1,15 @@
 ---
-title: "Reproducibility - Why?"
+title: "Reproducibilidad con Impacto"
 author: 
   - "Lars Vilhuber"
-date: January 21 2026
+date: January 23 2026
 format: 
   revealjs:
     scrollable: true
     margin: 0
     code-overflow: wrap
     reference-location: document
-    widescreen: true
+    widescreen: false
     center: true
     transition: slide
     theme: [night, style.css]
@@ -46,7 +46,7 @@ message(Sys.getenv("GITHUB_REPOSITORY"))
 # - split the two components
 # - combine them into a URL with 'github.io' in the middle
 
-SUBDIRECTORY <- "presentation/presentation.html" # Leave this empty if this file is in the main directory of the repository
+SUBDIRECTORY <- "" # Leave this empty if this file is in the main directory of the repository
 
 GITHUB_REPOSITORY <- Sys.getenv("GITHUB_REPOSITORY")
 GITHUB_REPOSITORY_PARTS <- strsplit(GITHUB_REPOSITORY, "/")[[1]]
@@ -67,6 +67,12 @@ QUALTRICS_ETIME <- ymd_hms("2026-02-14 23:59:00")
 
 ```
 
+```{r, child=c(here::here("presentation",'00-follow-along.md'))}
+```
+
+```{r, child=c(here::here("presentation",'00-extra-title-slide.md'))}
+```
+
 
 ```{r, child=c(here::here("presentation",'03-sp500.md'))}
 ```
@@ -79,4 +85,9 @@ QUALTRICS_ETIME <- ymd_hms("2026-02-14 23:59:00")
 ```
 
 
-# The end! Thanks for your attention.
+# The end! 
+
+
+```{r, child=c(here::here('99-links.md'))}
+```
+

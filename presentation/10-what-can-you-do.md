@@ -165,14 +165,19 @@ When I prompted Gemini to correct the spelling in "Reproducibility", it only mad
 ## What if you could verify the file?
 
 
-
-::::{.columns}
-:::{.column width="50%"}
-
 ```{r checksum, include=TRUE,echo=TRUE}
 # compute checksum of the file
 tools::md5sum(here::here("presentation","SP500.csv"))
 ```
+
+::::{.columns}
+:::{.column width="50%"}
+
+
+::: {.white-col}
+![Certified survey processing](images/xkcd_data_provenance-10.jpg)
+:::
+
 
 :::
 :::{.column width="50%"}
@@ -212,17 +217,6 @@ tools::md5sum(here::here("presentation","SP500.csv"))
 - Transparent about your process - show your code!
 - Expect critique (if not criticism) - embrace it!
 
-## A sketch: Transparency Certified
-
-<https://transparency-certified.github.io/>
-
-[![Transparency Certified](images/trace.png)](https://transparency-certified.github.io/)
-
-
-## Work in progress
-
-- Working with [cascad](https://www.cascad.tech/), several [INEXDA](https://inexda.org) members, and others
-- Relying on external certification of data inputs (data catalogs with metadata, checksums)
 
 ## Churchill said...
 
@@ -245,3 +239,77 @@ tools::md5sum(here::here("presentation","SP500.csv"))
 "No, of course, the British Prime Minister ... **never claimed such nonsense**. But putting his name in front of a quote gives it a more solemn, more imposing, more definitive appearance." [[Source](https://winstonchurchill.hillsdale.edu/fake-churchill-quote/)]
 :::
 ::::
+
+## A sketch: Transparency Certified
+
+<https://transparency-certified.github.io/>
+
+[![Transparency Certified](images/trace.png)](https://transparency-certified.github.io/)
+
+
+## Work in progress
+
+- Working with [cascad](https://www.cascad.tech/), several [INEXDA](https://inexda.org) members, and others
+- Relying on external certification of data inputs (data catalogs with metadata, checksums)
+
+## Who is this person? (3)
+
+
+::::{.columns}  
+
+::: {.column width="50%"}
+
+![](images/alp-simsek-yale-cropped.png)
+
+::: 
+::: {.column width="50%"}
+
+:::
+::::
+
+## Who is this person? (3)
+
+
+::::{.columns}  
+
+::: {.column width="50%"}
+
+![](images/alp-simsek-yale.png)
+
+::: 
+::: {.column width="50%"}
+
+[Alp Simsek](https://som.yale.edu/faculty-research/faculty-directory/alp-simsek), one of ...
+:::
+::::
+
+
+## Transparency is the norm
+
+
+::::{.columns}  
+
+::: {.column width="50%"}
+
+![](images/Gemini_Generated_Image_bj8lf3bj8lf3bj8l.png)
+
+::: 
+::: {.column width="50%"}
+
+[nearly 5,000 authors](https://aeadataeditor.github.io/aea-cumulative-summary/impacts_of_aea_data_editing.html#authors-reached) who have had [their work](https://doi.org/10.3886/E159301V1) verified by the AEA Data Editor and team.
+
+:::
+::::
+
+## You can do it, too!
+
+::::{.columns}
+::: {.column width="20%"}
+:::
+::: {.column width="60%"}
+![You can do it, too!](images/Gemini_Generated_Image_wdh8jvwdh8jvwdh8.png)
+:::
+::: {.column width="20%"}
+:::
+::::
+
