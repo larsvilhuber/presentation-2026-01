@@ -313,3 +313,19 @@ tools::md5sum(here::here("presentation","SP500.csv"))
 :::
 ::::
 
+## Bonus: You can help, too!
+
+::::{.columns}
+::: {.column width="10%"}
+:::
+::: {.column width="80%"}
+
+- Apply the reproducible tools *not just for research*: Policy analysis, program evaluation, business analytics, etc.
+- Push data providers to provide better access tools (**API access**, checksums, **DOI**)
+- Be able to explain why this *benefits* them! 
+
+:::
+::: {.column width="10%"}
+:::
+::::
+
